@@ -1,0 +1,77 @@
+
+    var aux;
+
+    
+    function captura(){
+
+        aux = document.getElementById('numCPF2').value;
+
+        var n1,n2,n3,n4,n5,n6,n7,n8,n9,n10,n11,soma1,resto1,resto2;
+        
+
+        n1 = aux.substring(0,1); 
+        n2 = aux.substring(1,2);
+        n3 = aux.substring(2,3);
+        n4 = aux.substring(4,5);
+        n5 = aux.substring(5,6);
+        n6 = aux.substring(6,7);
+        n7 = aux.substring(8,9);
+        n8 = aux.substring(9,10);
+        n9 = aux.substring(10,11);
+        n10 = aux.substring(12,13);
+        n11 = aux.substring(13,14);
+        
+
+        if(n1 == n2 && n2 ==n3 && n3 == n4 && n4 == n5 && n5 == n6 
+            && n6 == n7 && n7 == n8 && n8 == n9 && n9 == n10 && n10 == n11){
+                var aux2 = "CPF Invalido!!!!"
+                document.getElementById('mostra').innerHTML = aux2;
+
+            }else{
+               
+
+                soma1 = n1 * 10 + n2 * 9 + n3 *8 + n4 *7 + n5 * 6 + n6 * 5 + n7 * 4 + n8 * 3 + n9 * 2;
+                
+               
+                soma2 = n1 * 11 + n2 * 10 + n3 * 9 + n4 * 8 + n5 * 7 + n6 * 6 + n7 * 5 + n8 * 4 + n9 * 3 + n10 *2;
+
+               
+                resto1 = (soma1 * 10) % 11;
+
+                resto2 = (soma2 * 10) % 11;
+
+                
+                if(resto1 == n10 && resto2 == n11){
+                   
+                    
+                    var aux2 = "CPF Valido!!!!"
+
+                    document.getElementById('mostra').innerHTML = aux2;
+                    document.getElementById('mostra2').innerHTML = aux;
+
+                }else{
+
+                    var aux2 = "CPF Invalido!!!!"
+                    document.getElementById('mostra').innerHTML = aux2;
+
+                }
+            }                        
+
+    
+}
+
+function mascara(o,f){
+    v_obj=o
+    v_fun=f
+    setTimeout("execmascara()",1)
+}
+function execmascara(){
+    v_obj.value=v_fun(v_obj.value)
+}
+function mtel(v){
+    v=v.replace(/\D/g,""); 
+    v=v.replace(/(\d)(\d{8})$/,"$1.$2");      
+    v=v.replace(/(\d)(\d{5})$/,"$1.$2");      
+    v=v.replace(/(\d)(\d{2})$/,"$1-$2");    //Coloca hífen entre o quarto e o quinto dígitos
+    return v;
+}
